@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-   root  'static_pages#home'
+  
+  root  'static_pages#home'
+  
   get 'cart/index'
 
   resources :items
@@ -13,6 +15,10 @@ Rails.application.routes.draw do
   
   get '/cart/remove/:id' => 'cart#remove'
   get '/cart/decrease/:id' => 'cart#decrease'
+  
+  get '/login' => 'user#login' 
+  get '/logout' => 'user#logout'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
