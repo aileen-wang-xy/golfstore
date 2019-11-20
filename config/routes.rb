@@ -12,9 +12,12 @@ Rails.application.routes.draw do
   get '/about' => 'static_pages#about'
   
   get '/cart/:id', to: 'cart#add' 
+  get '/cart', to: 'cart#index'
+  get '/clearcart', to: 'cart#clearCart'
   
   get '/cart/remove/:id' => 'cart#remove'
   get '/cart/decrease/:id' => 'cart#decrease'
+  
   
   get '/login' => 'user#login' 
   get '/logout' => 'user#logout'

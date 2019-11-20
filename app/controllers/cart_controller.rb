@@ -1,24 +1,25 @@
 class CartController < ApplicationController
  
  def add
-   # get an id of a product
-   id = params[:id]
-   # if the cart is already been created , use the exisiting one else create a blank cart
-   if session[:cart] then
-     cart= session[:cart]
-   else
-     session[:cart]={}
-     cart= session[:cart]
-  end   
-  # if product us already added increment it by one else set it to 1
-  if cart[id] then
+    # get an id of a product
+    id = params[:id]
     
-    cart[id]+=1
-  else
-    cart[id]=1
-  end  
-  
-   redirect_to :action=> :index
+    # if the cart is already been created , use the exisiting one else create a blank cart
+    if session[:cart] then
+        cart= session[:cart]
+    else
+        session[:cart]={}
+        cart= session[:cart]
+    end   
+    
+    # if product us already added increment it by one else set it to 1
+    if cart[id] then
+        cart[id]+=1
+    else
+        cart[id]=1
+    end  
+    
+    redirect_to :action=> :index
  end   
  
  def remove
@@ -39,8 +40,14 @@ class CartController < ApplicationController
          cart[id]= cart[id]-1
     end
     redirect_to :action => :index
- end     
+  end     
  
+ 
+  def clearCart
+    # sets session variable to nil and bring back to index
+    session[:cart] = nil
+    redirect_to :action => :index
+  end
  
  
   def index
